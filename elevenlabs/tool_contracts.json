@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "note": "Dashboard configuration reference, not a claim of a deployed ElevenLabs agent.",
+  "tools": [
+    {
+      "name": "clinic_authenticate",
+      "mode": "server",
+      "permission": "read_only",
+      "description": "Matches a clinic ID and registered callback number in the synthetic provider directory.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clinic_id", "callback_number"],
+        "properties": {
+          "clinic_id": {"type": "string", "pattern": "^CLINIC-[0-9]{3}$"},
+          "callback_number": {"type": "string", "pattern": "^\\+971[0-9]{9}$"}
+        }
+      }
+    },
+    {
+      "name": "rules_lookup",
+      "mode": "server",
+      "permission": "read_only",
+      "description": "Returns a cited synthetic policy rule, required evidence and escalation thresholds.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["policy_id", "procedure_code", "diagnosis_code"],
+        "properties": {
+          "policy_id": {"type": "string"},
+          "procedure_code": {"type": "string"},
+          "diagnosis_code": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "submit_for_approval",
+      "mode": "server",
+      "permission": "create_draft_only",
+      "description": "Creates an approval-ready evidence packet. It cannot approve or deny.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "recommendation", "source", "rule_version"],
+        "properties": {
+          "case_id": {"type": "string"},
+          "recommendation": {"type": "string", "enum": ["approve", "manual_review"]},
+          "source": {"type": "string"},
+          "rule_version": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "get_approved_outcome",
+      "mode": "server",
+      "permission": "read_signed_human_outcome_only",
+      "description": "Returns an outcome only after a qualified employee records it in the separate console.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id"],
+        "properties": {"case_id": {"type": "string"}}
+      }
+    },
+    {
+      "name": "route_to_human",
+      "mode": "server",
+      "permission": "queue_only",
+      "description": "Creates a callback or live-transfer task without issuing an outcome.",
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["reason", "case_reference"],
+        "properties": {
+          "reason": {"type": "string"},
+          "case_reference": {"type": "string"}
+        }
+      }
+    }
+  ]
+}

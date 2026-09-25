@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic provider pre-authorisation intake and human approval demo.">
+  <title>AqionLabs — Pre-authorisation lab</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <header class="topbar">
+    <div class="brand" aria-label="AqionLabs">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span>AqionLabs</span>
+    </div>
+    <div class="topbar-meta">
+      <span class="badge badge-alert">Synthetic data only</span>
+      <span class="badge badge-neutral">Human decision required</span>
+    </div>
+  </header>
+
+  <main id="workspace" class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Ignyte × ElevenLabs · Track 1 · Use case 3</p>
+      <h1 id="page-title">Provider pre-authorisation, prepared for a qualified approver.</h1>
+      <p class="lede">A deterministic synthetic workflow for clinic authentication, structured intake, cited rule lookup and an explicit human approval hold. It never issues a medical or insurance decision on its own.</p>
+      <div class="proof-strip" aria-label="Prototype boundaries">
+        <div><strong>3</strong><span>Languages planned</span></div>
+        <div><strong>30</strong><span>Synthetic evaluations</span></div>
+        <div><strong>0</strong><span>Real patient records</span></div>
+        <div><strong>1</strong><span>Mandatory human gate</span></div>
+      </div>
+    </section>
+
+    <section class="layout" aria-label="Pre-authorisation demo workspace">
+      <article class="panel intake-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="index">01 / Clinic intake</p>
+            <h2>Prepare a synthetic case</h2>
+          </div>
+          <span class="status-dot" title="Local service status"><span aria-hidden="true"></span><span id="service-status">Checking service</span></span>
+        </div>
+
+        <form id="intake-form">
+          <fieldset>
+            <legend>Caller and consent</legend>
+            <div class="form-grid">
+              <label>Clinic ID<input name="clinic_id" value="CLINIC-001" required></label>
+              <label>Registered callback number<input name="callback_number" value="+971500000001" required></label>
+              <label>Language
+                <select name="language">
+                  <option value="en">English</option>
+                  <option value="ar">Arabic</option>
+                  <option value="ur">Urdu</option>
+                </select>
+              </label>
+              <label>Urgency
+                <select name="urgency">
+                  <option value="routine">Routine</option>
+                  <option value="urgent">Urgent</option>
+                  <option value="emergency">Emergency — force handoff</option>
+                </select>
+              </label>
+            </div>
+            <div class="checks">
+              <label><input type="checkbox" name="disclosure_acknowledged" checked> AI identity and purpose acknowledged</label>
+              <label><input type="checkbox" name="recording_consent" checked> Recording consent confirmed</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Request details</legend>
+            <div class="form-grid">
+              <label>Synthetic member ID<input name="synthetic_member_id" value="SYN-000101" pattern="SYN-[0-9]{6}" required></label>
+              <label>Policy ID<input name="policy_id" value="POL-SYN-GOLD-01" required></label>
+              <label>Procedure code
+                <select name="procedure_code">
+                  <option value="PROC-MRI">PROC-MRI</option>
+                  <option value="PROC-PHYSIO">PROC-PHYSIO</option>
+                </select>
+              </label>
+              <label>Diagnosis code<input name="diagnosis_code" value="M54.5" required></label>
+              <label>Requested amount (AED)<input name="cost_aed" type="number" value="2400" min="1" max="1000000" required></label>
+            </div>
+            <div class="checks">
+              <label><input type="checkbox" name="document" value="clinical_note" checked> Clinical note</label>
+              <label><input type="checkbox" name="document" value="referral" checked> Referral</label>
+              <label><input type="checkbox" name="document" value="treatment_plan"> Treatment plan</label>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Run intake workflow</button>
+            <button class="button button-secondary" id="load-missing" type="button">Load missing-evidence case</button>
+            <button class="button button-secondary" id="load-emergency" type="button">Load escalation case</button>
+          </div>
+        </form>
+      </article>
+
+      <aside class="panel flow-panel" aria-labelledby="flow-title">
+        <div class="panel-heading">
+          <div>
+            <p class="index">02 / Workflow</p>
+            <h2 id="flow-title">Control path</h2>
+          </div>
+        </div>
+        <ol class="flow-list" id="flow-list">
+          <li data-step="disclosure"><span>1</span><div><strong>Disclosure</strong><small>Identity, purpose, recording</small></div></li>
+          <li data-step="authentication"><span>2</span><div><strong>Clinic authentication</strong><small>Registered-number challenge</small></div></li>
+          <li data-step="intake"><span>3</span><div><strong>Structured intake</strong><small>Schema and synthetic-ID checks</small></div></li>
+          <li data-step="rules"><span>4</span><div><strong>Cited rule lookup</strong><small>Read-only policy tool</small></div></li>
+          <li data-step="recommendation"><span>5</span><div><strong>Recommendation</strong><small>Evidence packet, no decision</small></div></li>
+          <li data-step="human"><span>H</span><div><strong>Qualified employee</strong><small>Approve, deny or escalate</small></div></li>
+        </ol>
+        <div class="boundary-note">
+          <strong>Hard boundary</strong>
+          <p>The agent has no permission or endpoint that can approve or deny. That action exists only in the approver route.</p>
+        </div>
+      </aside>
+
+      <article class="panel result-panel" aria-labelledby="result-title">
+        <div class="panel-heading">
+          <div>
+            <p class="index">03 / Evidence packet</p>
+            <h2 id="result-title">Latest case</h2>
+          </div>
+          <span id="case-status" class="badge badge-neutral">No case yet</span>
+        </div>
+        <div id="empty-result" class="empty-state">
+          <p>Run the intake workflow to see the recommendation, cited source and audit sequence.</p>
+        </div>
+        <div id="case-result" class="case-result" hidden>
+          <dl class="result-grid">
+            <div><dt>Case</dt><dd id="case-id">—</dd></div>
+            <div><dt>Recommendation</dt><dd id="recommendation">—</dd></div>
+            <div class="wide"><dt>Rationale</dt><dd id="rationale">—</dd></div>
+            <div class="wide"><dt>Cited source</dt><dd id="source">—</dd></div>
+          </dl>
+          <div class="audit-block">
+            <h3>Audit events</h3>
+            <ol id="audit-events"></ol>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel approval-panel" aria-labelledby="approval-title">
+        <div class="panel-heading">
+          <div>
+            <p class="index">04 / Human hold</p>
+            <h2 id="approval-title">Approver console</h2>
+          </div>
+          <span class="badge badge-human">Human only</span>
+        </div>
+        <p class="panel-copy">A qualified employee must authenticate separately, inspect the cited evidence and record a reason. The demo token has no production value.</p>
+        <form id="approval-form">
+          <div class="form-grid">
+            <label>Approver identity<input name="approver" value="Synthetic Medical Reviewer" required></label>
+            <label>Demo approver token<input name="token" type="password" value="demo-approver" autocomplete="off" required></label>
+            <label class="wide">Decision rationale<textarea name="reason" rows="3" required>Reviewed synthetic evidence and cited rule version.</textarea></label>
+          </div>
+          <div class="decision-actions">
+            <button type="button" class="button decision" data-decision="approve">Approve</button>
+            <button type="button" class="button decision" data-decision="deny">Deny</button>
+            <button type="button" class="button button-secondary decision" data-decision="escalate">Escalate</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div>
+        <p class="eyebrow">Design invariants</p>
+        <h2 id="principles-title">What the prototype proves</h2>
+      </div>
+      <div class="principle-grid">
+        <article><span>01</span><h3>Data boundary</h3><p>Only IDs matching <code>SYN-000000</code> are accepted. Real patient identifiers fail validation.</p></article>
+        <article><span>02</span><h3>Source boundary</h3><p>Recommendations identify the synthetic policy, clause and version used.</p></article>
+        <article><span>03</span><h3>Action boundary</h3><p>The agent prepares evidence. A distinct authenticated route records every human decision.</p></article>
+        <article><span>04</span><h3>Failure boundary</h3><p>Consent, authentication, emergency, missing evidence and rule ambiguity stop automation.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

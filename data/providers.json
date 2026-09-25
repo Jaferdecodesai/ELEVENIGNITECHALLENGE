@@ -1,0 +1,14 @@
+{
+  "CLINIC-001": {
+    "name": "Synthetic Creek Clinic",
+    "active": true,
+    "registered_number": "+971500000001",
+    "languages": ["ar", "en", "ur"]
+  },
+  "CLINIC-002": {
+    "name": "Synthetic Harbour Clinic",
+    "active": false,
+    "registered_number": "+971500000002",
+    "languages": ["ar", "en"]
+  }
+}

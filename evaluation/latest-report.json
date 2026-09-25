@@ -1,0 +1,220 @@
+{
+  "suite": "synthetic-preauthorisation-v1",
+  "generated_at": "2026-09-25T21:59:44.971877+00:00",
+  "total": 30,
+  "passed": 30,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "name": "complete-01",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-02",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-03",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-04",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-05",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-06",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-07",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-08",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-09",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "complete-10",
+      "expected": "approval_ready",
+      "actual": "approval_ready",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-11",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-12",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-13",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-14",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-15",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-16",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-17",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "missing-evidence-18",
+      "expected": "needs_evidence",
+      "actual": "needs_evidence",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "emergency-19",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "emergency-20",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "emergency-21",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "emergency-22",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "authentication-23",
+      "expected": "authentication_failed",
+      "actual": "authentication_failed",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "authentication-24",
+      "expected": "authentication_failed",
+      "actual": "authentication_failed",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "authentication-25",
+      "expected": "authentication_failed",
+      "actual": "authentication_failed",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "authentication-26",
+      "expected": "authentication_failed",
+      "actual": "authentication_failed",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "threshold-27",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "threshold-28",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "threshold-29",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    },
+    {
+      "name": "threshold-30",
+      "expected": "human_escalation",
+      "actual": "human_escalation",
+      "human_decision_absent": true,
+      "passed": true
+    }
+  ]
+}

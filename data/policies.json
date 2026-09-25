@@ -1,0 +1,21 @@
+{
+  "POL-SYN-GOLD-01": {
+    "name": "Synthetic Gold Benefit Schedule",
+    "version": "2026-09-demo-1",
+    "source": "Synthetic Gold Benefit Schedule",
+    "procedures": {
+      "PROC-MRI": {
+        "clause": "clause 4.2",
+        "required_documents": ["clinical_note", "referral"],
+        "diagnosis_prefixes": ["M", "N"],
+        "max_cost_aed": 5000
+      },
+      "PROC-PHYSIO": {
+        "clause": "clause 5.1",
+        "required_documents": ["referral", "treatment_plan"],
+        "diagnosis_prefixes": ["M"],
+        "max_cost_aed": 3000
+      }
+    }
+  }
+}
